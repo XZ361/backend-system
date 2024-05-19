@@ -1,30 +1,60 @@
 <template>
   <div class="login-container">
-    <el-form ref="formRef" :model="form" class="login-form">
+    <el-form ref="formRef" :model="form" :rules="rules" class="login-form">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
-      <el-form-item>
+      <el-form-item prop="username">
         <svg-icon icon="user" class="svg-container"></svg-icon>
-        <el-input v-model="form.name" />
+        <el-input v-model="form.username" />
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="password">
         <!-- <el-icon :size="20" class="svg-container">
           <Edit />
         </el-icon> -->
         <svg-icon icon="password" class="svg-container"></svg-icon>
         <el-input v-model="form.password" />
       </el-form-item>
-      <el-button type="primary" class="login-button">登录</el-button>
+      <el-button type="primary" class="login-button" @click="handleLogin"
+        >登录</el-button
+      >
     </el-form>
   </div>
 </template>
 <script setup>
 import { ref } from 'vue'
 const form = ref({
-  name: '',
+  username: '',
   password: ''
 })
+const rules = ref({
+  username: [
+    {
+      required: true,
+      message: '请输入合法的用户名',
+      trigger: 'change'
+    }
+  ],
+  password: [
+    {
+      required: true,
+      message: '请输入正确的密码',
+      trigger: 'change'
+    },
+    { min: 5, max: 8, message: 'Length should be 3 to 5', trigger: 'blur' }
+  ]
+})
+const formRef = ref(null)
+const handleLogin = () => {
+  formRef.value.validate((valid) => {
+    if (valid) {
+      alert('submit!')
+    } else {
+      console.log('error submit!!')
+      return false
+    }
+  })
+}
 </script>
 <style lang="scss" scoped>
 // $bg: #2d3a4b;
