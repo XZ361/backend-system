@@ -49,5 +49,10 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "eslintConfig": {
+    "rules": {
+      "eslint-disable-next-line":false
+    }
   }
 }

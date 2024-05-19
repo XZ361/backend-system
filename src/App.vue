@@ -1,18 +1,6 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <div class="box"></div>
+  <nav><router-link to="/">Home</router-link> |</nav>
   <router-view />
 </template>
-<script setup>
-const boxWidth = '100px'
-</script>
-<style lang="scss">
-.box {
-  width: v-bind(boxWidth);
-  height: 100px;
-  background: red;
-}
-</style>
+<script setup></script>
+<style lang="scss"></style>
